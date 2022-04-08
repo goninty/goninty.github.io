@@ -9,3 +9,11 @@ nav .navbar-collapse a {
 .page-footer {
     margin-top: -1em;
 }
+
+a:link {
+    color: rgb(0, 200, 200);
+}
+
+a:visited {
+    color: rgb(0, 120, 120);
+}

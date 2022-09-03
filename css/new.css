@@ -1,0 +1,25 @@
+body {
+    background-color: black;
+    color: rgb(255, 176, 0);
+    
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+}
+
+div {
+    border: 2px solid red;
+}
+
+#main {
+    justify-content: center;  
+}
+
+#caret {
+    background-color: white;
+    white-space: pre;
+    display: inline;
+}
+
+#main p {
+    display: inline;
+}

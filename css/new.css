@@ -18,6 +18,8 @@ div {
     background-color: white;
     white-space: pre;
     display: inline;
+    -webkit-filter: invert(0);
+    filter:progid:DXImageTransform.Microsoft.BasicImage(invert='1');
 }
 
 #main p {

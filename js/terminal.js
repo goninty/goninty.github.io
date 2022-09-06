@@ -1,40 +1,81 @@
-//var hello = document.getElementById("text").getElementsByTagName('p')[0];
+// You know what? I'll fix this later.
+const pageText = `## ABOUT ##
 
-//hello.innerHTML = "hello";
+> I'm Andrew.
+> A recent Computer Science graduate from the University of Bath. 
+> Looking for graduate software development positions.
+> I like building fun things and playing rhythm games.
 
-var headingString =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+## TECHNICAL SKILLS ##
+
+> C#, C/C++, Java
+> Python, JS
+> HTML/CSS
+> React/Bootstrap
+> VCS (Git, GitHub, BitBucket)
+
+
+## EXPERIENCE ##
+
+> PAL Leader (Peer Assisted Learning)
+> Senior PAL Leader
+> Academic Representative
+
+
+## PROJECTS ##
+
+> MiiCloner~https://github.com/goninty/MiiCloner
+> University Simulator~https://devpost.com/software/university-simulator-nultrm
+> Autistica Data Visualisations~https://github.com/Lon19/team-7
+> AskReddit eBooks~https://github.com/goninty/askreddit_ebooks
+
+> GitHub~https://github.com/goninty
+
+
+## CONTACT ##
+
+> LinkedIn~https://www.linkedin.com/in/andrew-morton-325b45187
+> Discord: Ninty#7513`;
+
+var pageLines = pageText.split("\n");
 
 const parentDiv = document.getElementById("main");
 const caretNode = document.getElementById("caret");
 
-function loadLineText() {}
-
-function beginLine() {
-  // grabs text
-  // new paragraph
-  // drawLine
-}
-
 // I wish there were a better way to do this where the string stayed const.
 // requestAnimationFrame/setTimeout/setInterval do not play nice when wrapped inside a loop, though.
-function drawLine(text) {
-  const pNode = document.createElement("p");
-  //pNode.id = "mainp";
+function drawLine(text, i) {
+   var pNode;
+
+  // If link, create link. Otherwise regular paragraph tag.
+  if (text.includes('~')) {
+    pNode = document.createElement('a');
+    [text, link] = text.split('~');
+    pNode.href = link;
+  } else {
+    pNode = document.createElement('p');
+  }
+
   parentDiv.insertBefore(pNode, caretNode);
 
   const interval = setInterval(function () {
-    //textNode.textContent += text.charAt(0);
     pNode.innerHTML += text.charAt(0);
-    // pNode.
-    //pNode.innerHTML += caretP.outerHTML;
     text = text.substring(1);
+
+    // Once line has finished, stop interval and go next line.
     if (text == "") {
       clearInterval(interval);
       parentDiv.insertBefore(document.createElement("br"), caretNode);
-      parentDiv.insertBefore(document.createElement("br"), caretNode);
+      //parentDiv.insertBefore(document.createElement("br"), caretNode);
+
+      // Recurse to begin drawing a new line.
+      // Has to be recursive so that it is called after the current line has been drawn.
+      // Otherwise setInterval pushes the function calls whenever it can,
+      // so lines are drawn in random orders instead of sequentially.
+      if (i > 0) drawLine(pageLines[pageLines.length - i], i - 1);
     }
-  }, 20);
+  }, 40);
 }
 
 // setInterval to blink caret cursor.
@@ -54,8 +95,4 @@ setInterval(function() {
   }
 }, 530);
 
-drawLine(headingString);
-//drawText("vvvvvvvvvvvvvvvvv");
-//newParagraph();
-
-console.log("hello world");
+drawLine(pageLines[0], pageLines.length-1);

@@ -37,8 +37,7 @@ GitHub~https://github.com/goninty
 LinkedIn~https://www.linkedin.com/in/andrew-morton-325b45187
 Discord: Ninty#7513
 
-
-Continue typing? [Y/N]: `;
+`;
 
 var pageLines = pageText.split("\n");
 var finished = false;
@@ -70,10 +69,9 @@ function drawLine(text, i, noBreak) {
     if (text == "") {
       clearInterval(interval);
 
-      if (!noBreak) {
+      if (!noBreak && i > 0) {
         parentDiv.insertBefore(document.createElement("br"), caretNode);
       }
-      //parentDiv.insertBefore(document.createElement("br"), caretNode);
 
       // Recurse to begin drawing a new line.
       // Has to be recursive so that it is called after the current line has been drawn.
@@ -84,40 +82,12 @@ function drawLine(text, i, noBreak) {
         // I am finishing this thing now.
         if (noBreak || pageLines[pageLines.length - i] == "" || pageLines[pageLines.length - i].charAt(0) == "#") {
           drawLine(pageLines[pageLines.length - i], i - 1, false);
-        } else if (pageLines[pageLines.length - i] === "Continue typing? [Y/N]: ") {
-          drawLine(pageLines[pageLines.length - i], i - 1, true);
         } else {
           drawLine("> ", i, true);
-        }
-      } else {
-        // We are finished writing the text.
-        // Please try branchless programming.
-        if (!finished) {
-          finished = true;
-          //parentDiv.insertBefore(document.createElement("br"), caretNode);
-
-          // var typeQ = parentDiv.insertBefore(document.createElement("p"), caretNode);
-          // typeQ.innerHTML = "Continue typing?";
-
-          //drawTypeSelector();
-          const event = new Event('finishedWriting');
-          document.dispatchEvent(event);
         }
       }
     }
   }, 10);
-}
-
-function drawTypeSelector() {
-
-  var typeQDiv = document.createElement("p");
-  typeQDiv.style.justifyContent = "center";
-
-  typeQDiv.innerHTML = "dfoskljfds";
-  mainDiv.insertBefore(typeQDiv, caretNode);
-
-
-  //drawLine("continue?", 0, false, mainDiv);
 }
 
 // setInterval to blink caret cursor.
@@ -134,55 +104,5 @@ setInterval(function() {
     caretNode.style.backgroundColor = caretColor;
   }
 }, 530);
-
-document.addEventListener('finishedWriting', function() {
-  var answered = false;
-  var answer = parentDiv.insertBefore(document.createElement('p'), caretNode);
-  document.addEventListener("keydown", function (e) {
-    switch (e.key) {
-      case "Enter":
-        // First initial Y/N answer.
-        if (!answered) {
-          switch (answer.innerHTML.trim()) {
-            case "Y":
-              // go ahead
-              answered = true;
-              break;
-            case "N":
-              // bye bye
-              answered = true;
-              document.removeEventListener("keydown");
-              break;
-            default:
-              parentDiv.insertBefore(document.createElement("br"), caretNode);
-              drawLine(pageLines[pageLines.length - 1], 0, true);
-              break;
-          }
-        } else {
-          //parentDiv.insertBefore(document.createElement("br"), caretNode);
-          parentDiv.insertBefore(document.createElement("p"), caretNode);
-        }
-        break;
-      
-      case "Backspace":
-        var typedText = caretNode.previousSibling.textContent;
-        console.log(typedText);
-        if (typedText.length == 0) {
-          caretNode.previousSibling.remove();
-          if (caretNode.previousSibling.nodeName == "BR") caretNode.previousSibling.remove();
-        } else {
-          caretNode.previousSibling.innerHTML = typedText.slice(0, -1);
-        }
-        break;
-      
-      default:
-        if (e.key.length == 1) {
-        //drawLine(e.key, 0, true);
-          caretNode.previousSibling.innerHTML += e.key;
-        }
-        break;
-    }
-  });
-});
 
 drawLine(pageLines[0], pageLines.length-1, false);

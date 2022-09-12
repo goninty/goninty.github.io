@@ -1,14 +1,37 @@
 body {
     background-color: black;
     color: #ffb000;
-    
     /*font-family: 'Courier New', Courier, monospace;*/
     font-family: 'MS Gothic', 'Courier New', Courier, monospace;
     font-weight: 900;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    padding-left: 30%;
-    padding-right: 30%;
+
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+/* Tablet */
+@media (min-width:600px) {
+    body {
+        padding-left: 3%;
+        padding-left: 3%;
+    }
+}
+
+/* Desktop */
+@media (min-width:900px) {
+    body {
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+}
+
+@media (min-width:1000px) {
+    body {
+        padding-left: 30%;
+        padding-right: 30%;
+    }
 }
 
 body #boldest {
@@ -18,7 +41,7 @@ body #boldest {
 
 a {
     color: rgb(255, 176, 0);
-    text-underline-offset: 2px;
+    text-underline-offset: 1px;
 }
 
 div {

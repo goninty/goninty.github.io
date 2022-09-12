@@ -4,11 +4,9 @@ body {
     /*font-family: 'Courier New', Courier, monospace;*/
     font-family: 'MS Gothic', 'Courier New', Courier, monospace;
     font-weight: 900;
-
+    line-height: 110%;
     padding-top: 2vh;
     padding-bottom: 2vh;
-    padding-left: 4%;
-    padding-right: 4%;
 }
 
 /* Tablet */
@@ -40,12 +38,8 @@ body #boldest {
 }
 
 a {
-    color: rgb(255, 176, 0);
+    color: #ffb000;
     text-underline-offset: 1px;
-}
-
-div {
-    border: 2px solid red;
 }
 
 #main {
@@ -59,7 +53,7 @@ div {
 }
 
 #caret {
-    background-color: white;
+    background-color: #ffb000;
     white-space: pre;
     display: inline;
 }

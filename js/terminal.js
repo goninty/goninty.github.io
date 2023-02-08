@@ -2,22 +2,25 @@
 const pageText = `## ABOUT ##
 
 I'm Andrew.
-A recent Computer Science graduate from the University of Bath. 
-Looking for graduate software development positions.
-I like building fun things and playing rhythm games.
+I work at 
+AppFox~https://www.appfox.io/
+ as a Graduate Software Engineer.
+I graduated from the University of Bath in Computer Science.
+Sometimes, I build fun things or play rhythm games.
 
 
 ## TECHNICAL SKILLS ##
 
-C#, C/C++, Java
-Python, JS
-HTML/CSS
-React/Bootstrap
+TypeScript, React, Sass
+Java, C#
+C, C++
 VCS (Git, GitHub, BitBucket)
 
 
 ## EXPERIENCE ##
 
+Graduate Software Engineer @ 
+AppFox~https://www.appfox.io/ 
 PAL Leader 
 (Peer Assisted Learning)~https://www.thesubath.com/peer-support/pal/
 Senior PAL Leader
@@ -28,15 +31,16 @@ Academic Rep~https://www.thesubath.com/academicreps/
 
 MiiCloner~https://github.com/goninty/MiiCloner
 University Simulator~https://devpost.com/software/university-simulator-nultrm
+Superuser~https://globalgamejam.org/2023/games/superuser-0
 Autistica Data Visualisations~https://github.com/Lon19/team-7
 AskReddit eBooks~https://github.com/goninty/askreddit_ebooks
-Webcam Eye Tracking for Use in Public Displays (Dissertation)
+Webcam Eye Tracking for Public Displays (Dissertation)
 
 
 ## CONTACT ##
 
 GitHub~https://github.com/goninty
-LinkedIn~https://www.linkedin.com/in/andrew-morton-325b45187
+LinkedIn~https://www.linkedin.com/in/morton-andrew
 Discord: Ninty#7513`;
 
 var pageLines = pageText.split("\n");
@@ -49,6 +53,7 @@ const caretNode = document.getElementById("caret");
 // I wish there were a better way to do this where the string stayed const.
 // requestAnimationFrame/setTimeout/setInterval do not play nice when wrapped inside a loop, though.
 function drawLine(text, i, noBreak) {
+  let lineText = text;
   var node;
 
   // If link, create link. Otherwise regular paragraph tag.
@@ -66,13 +71,26 @@ function drawLine(text, i, noBreak) {
     node.innerHTML += text.charAt(0);
     text = text.substring(1);
 
+    // You know, I think I need to refactor this.
+    if (
+      lineText == "I work at " ||
+      lineText == "AppFox~https://www.appfox.io/" ||
+      lineText == "Graduate Software Engineer @ "
+    ) {
+      noBreak = true;
+    }
+
     // Once line has finished, stop interval and go next line.
     if (text == "") {
       clearInterval(interval);
 
+
+      // You know, I think this needs an overhaul.
       if (!noBreak && i > 0) {
         parentDiv.insertBefore(document.createElement("br"), caretNode);
       }
+
+  
 
       // Recurse to begin drawing a new line.
       // Has to be recursive so that it is called after the current line has been drawn.

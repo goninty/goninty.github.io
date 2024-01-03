@@ -4,7 +4,7 @@ const pageText = `## ABOUT ##
 I'm Andrew.
 I work at 
 AppFox~https://www.appfox.io/
- as a Graduate Software Engineer.
+ as a Software Engineer.
 I graduated from the University of Bath in Computer Science.
 Sometimes, I build fun things or play rhythm games.
 
@@ -19,7 +19,7 @@ VCS (Git, GitHub, BitBucket)
 
 ## EXPERIENCE ##
 
-Graduate Software Engineer @ 
+Software Engineer @ 
 AppFox~https://www.appfox.io/ 
 PAL Leader 
 (Peer Assisted Learning)~https://www.thesubath.com/peer-support/pal/
@@ -75,7 +75,7 @@ function drawLine(text, i, noBreak) {
     if (
       lineText == "I work at " ||
       lineText == "AppFox~https://www.appfox.io/" ||
-      lineText == "Graduate Software Engineer @ "
+      lineText == "Software Engineer @ "
     ) {
       noBreak = true;
     }

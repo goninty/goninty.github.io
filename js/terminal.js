@@ -41,7 +41,7 @@ Webcam Eye Tracking for Public Displays (Dissertation)
 
 GitHub~https://github.com/goninty
 LinkedIn~https://www.linkedin.com/in/morton-andrew
-Discord: Ninty#7513`;
+Discord: goninty`;
 
 var pageLines = pageText.split("\n");
 var writeDelay = 20; // Time to write each new character in milliseconds.
